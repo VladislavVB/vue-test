@@ -5,21 +5,13 @@
         <div class="col-md-6 offset-md-3 col-xs-12">
           <h1 class="text-xs-center">Sign Up</h1>
           <p class="text-xs-center">
-            <router-link to="/login">You have account?</router-link>
+            <router-link to="/register">Need an account?</router-link>
           </p>
           <McvValidationErrors
             v-if="validationErrors"
             :validation-errors="validationErrors"
           ></McvValidationErrors>
           <form @submit.prevent="onSubmit">
-            <fieldset class="form-group">
-              <input
-                v-model="user"
-                type="text"
-                class="form-control form-control-lg"
-                placeholder="Username"
-              />
-            </fieldset>
             <fieldset class="form-group">
               <input
                 v-model="email"
@@ -51,13 +43,12 @@
 <script>
 import McvValidationErrors from '@/components/ValidationsErrors.vue'
 export default {
-  name: 'McvRegister',
+  name: 'McvLogin',
   components: {
     McvValidationErrors,
   },
   data() {
     return {
-      user: '',
       email: '',
       password: '',
     }
@@ -76,7 +67,6 @@ export default {
       this.$store
         .dispatch('register', {
           email: this.email,
-          username: this.user,
           password: this.password,
         })
         .then((user) => {
