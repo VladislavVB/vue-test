@@ -5,7 +5,7 @@
         <div class="col-md-6 offset-md-3 col-xs-12">
           <h1 class="text-xs-center">Sign Up</h1>
           <p class="text-xs-center">
-            <router-link to="/register">Need an account?</router-link>
+            <router-link :to="{name: 'register'}">Need an account?</router-link>
           </p>
           <McvValidationErrors
             v-if="validationErrors"
@@ -32,7 +32,7 @@
               :disabled="isSubmiting"
               class="btn btn-lg btn-primary pull-xs-right"
             >
-              Sign Up
+              Sign In
             </button>
           </form>
         </div>
@@ -65,15 +65,17 @@ export default {
   methods: {
     onSubmit() {
       this.$store
-        .dispatch('register', {
+        .dispatch('login', {
           email: this.email,
           password: this.password,
         })
-        .then((user) => {
-          console.log('zbs user', user)
+        .then(() => {
           this.$router.push({name: 'home'})
         })
     },
+  },
+  mounted() {
+    this.$store.commit('resetForm')
   },
 }
 </script>
