@@ -19,6 +19,46 @@ const routes = [
     name: 'login',
     component: Login,
   },
+  {
+    path: '/feed',
+    name: 'yourFeed',
+    component: ClobalFeed,
+  },
+  {
+    path: '/tags/:slug',
+    name: 'tag',
+    component: ClobalFeed,
+  },
+  {
+    path: '/articles/new',
+    name: 'createArticle',
+    component: ClobalFeed,
+  },
+  {
+    path: '/articles/:slug',
+    name: 'article',
+    component: ClobalFeed,
+  },
+  {
+    path: '/articles/:slug/edit',
+    name: 'editArticle',
+    component: ClobalFeed,
+  },
+  {
+    path: '/settings',
+    name: 'settings',
+    component: ClobalFeed,
+  },
+  {
+    path: '/profiles/:slug',
+    name: 'userProfile',
+    component: ClobalFeed,
+  },
+  {
+    path: '/profiles/:slug/favorites',
+    name: 'userProfileFavorites',
+    component: ClobalFeed,
+  },
 ]
 
 const router = createRouter({
