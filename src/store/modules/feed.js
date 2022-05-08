@@ -19,6 +19,7 @@ export const actionsTypes = {
 const mutations = {
   [mutationsTypes.getFeedStart](state) {
     state.isLoading = true
+    console.log('cleadr');
     state.data = null
   },
   [mutationsTypes.getFeedSuccess](state, payload) {

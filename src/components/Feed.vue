@@ -3,6 +3,7 @@
     <div v-if="isLoading">Load...</div>
     <div v-if="error">Error {{ error }}</div>
     <div v-if="feed">
+      {{ feed.articlesCount }}
       <div
         v-for="(article, index) in feed.articles"
         :key="index"
@@ -31,12 +32,16 @@
           :to="{name: 'article', params: {slug: article.slug}}"
         >
           <h1>{{ article.title }}</h1>
-          <p>{{article.description}}</p>
+          <p>{{ article.description }}</p>
           <span>Read more</span>
           TAG LIST
         </router-link>
       </div>
-      PAGINATION
+      <McvPagination
+        :total="feed.articlesCount"
+        :current-page="currentPage"
+        :url="baseUrl"
+      ></McvPagination>
     </div>
   </div>
 </template>
@@ -44,6 +49,10 @@
 <script>
 import {mapState} from 'vuex'
 import {actionsTypes} from '../store/modules/feed'
+import McvPagination from './Pagination.vue'
+import {stringify, parseUrl} from 'query-string'
+// import limit from '../helpers/vars'
+// тут должен был быть лимит, но он выебывается поэтому он компоненте пагинации
 export default {
   name: 'McvFeed',
   props: {
@@ -52,15 +61,53 @@ export default {
       required: true,
     },
   },
+
+  data() {
+    return {
+      url: '/',
+    }
+  },
   computed: {
     ...mapState({
       isLoading: (state) => state.feed.isLoading,
       feed: (state) => state.feed.data,
       error: (state) => state.feed.error,
     }),
+    currentPage() {
+      return Number(this.$route.query.page || '1')
+    },
+    baseUrl() {
+      return this.$route.path
+    },
+    offset() {
+      //тут должен был быть лимит, но он выебывается поэтому он компоненте пагинации и тут
+      return this.currentPage * 1 - 1
+    },
+  },
+  watch: {
+    currentPage() {
+      this.fethFeed()
+    },
+  },
+  methods: {
+    fethFeed() {
+      const parsedUrl = parseUrl(this.apiUrl)
+      const stringifieldParams = stringify({
+        limit: 1,
+        //тут должен был быть лимит, но он выебывается поэтому он компоненте пагинации и тут
+        offset: this.offset,
+        ...parsedUrl.query,
+      })
+      const apiUrlWidthParams = `${parsedUrl.url}?${stringifieldParams}`
+      console.log(apiUrlWidthParams)
+      this.$store.dispatch(actionsTypes.getFeed, {apiUrl: apiUrlWidthParams})
+    },
   },
   mounted() {
-    this.$store.dispatch(actionsTypes.getFeed, {apiUrl: this.apiUrl})
+    this.fethFeed()
+  },
+  components: {
+    McvPagination,
   },
 }
 </script>
