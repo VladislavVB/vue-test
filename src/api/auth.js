@@ -1,9 +1,9 @@
-import axios from "./axios.js";
+import axios from './axios.js'
 
-const register = credentials => {
+const register = (credentials) => {
   return axios.post('/users', {user: credentials})
 }
-const login = credentials => {
+const login = (credentials) => {
   return axios.post('/users/login', {user: credentials})
 }
 
@@ -14,5 +14,5 @@ const getCurrentUser = () => {
 export default {
   register,
   login,
-  getCurrentUser
+  getCurrentUser,
 }

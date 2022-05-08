@@ -3,7 +3,6 @@
     <div v-if="isLoading">Load...</div>
     <div v-if="error">Error {{ error }}</div>
     <div v-if="feed">
-      {{ feed.articlesCount }}
       <div
         v-for="(article, index) in feed.articles"
         :key="index"
@@ -11,8 +10,13 @@
       >
         <div class="article-meta">
           <router-link
-            :to="{name: 'userProfile', params: {slug: article.author.username}}"
-            ><img :src="article.author.image" :alt="article.author.username"
+            :to="{
+              name: 'userProfile',
+              params: {slug: article.author.username},
+            }"
+            ><img
+              :src="article.author.image"
+              :alt="article.author.username"
           /></router-link>
           <div class="info">
             <router-link
@@ -100,7 +104,9 @@ export default {
       })
       const apiUrlWidthParams = `${parsedUrl.url}?${stringifieldParams}`
       console.log(apiUrlWidthParams)
-      this.$store.dispatch(actionsTypes.getFeed, {apiUrl: apiUrlWidthParams})
+      this.$store.dispatch(actionsTypes.getFeed, {
+        apiUrl: apiUrlWidthParams,
+      })
     },
   },
   mounted() {
