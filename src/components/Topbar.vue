@@ -1,7 +1,7 @@
 <template>
   <nav class="navbar navbar-light">
     <div class="container">
-      <router-link class="navbar-brand" :to="{name: 'home'}">
+      <router-link class="navbar-brand" :to="{name: 'globalFeed'}">
         MediunClone
       </router-link>
       <ul class="nav navbar-nav pull-xs-right">
@@ -9,7 +9,7 @@
           <router-link
             active-class="active"
             class="nav-link"
-            :to="{name: 'home'}"
+            :to="{name: 'globalFeed'}"
             >Home</router-link
           >
         </li>
@@ -18,7 +18,7 @@
             <router-link
               active-class="active"
               class="nav-link"
-              :to="{name: 'home'}"
+              :to="{name: 'globalFeed'}"
             >
               <i class="ion-compose"></i> &nbsp; New Article
             </router-link>
@@ -27,7 +27,7 @@
             <router-link
               active-class="active"
               class="nav-link"
-              :to="{name: 'home'}"
+              :to="{name: 'globalFeed'}"
             >
               <i class="ion-gear-a"></i> &nbsp; Settings
             </router-link>
@@ -36,7 +36,7 @@
             <router-link
               active-class="active"
               class="nav-link"
-              :to="{name: 'home'}"
+              :to="{name: 'globalFeed'}"
             >
               <img
                 class="user-pic"
