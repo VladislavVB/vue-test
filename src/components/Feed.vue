@@ -1,7 +1,7 @@
 <template>
   <div>
-    <div v-if="isLoading">Load...</div>
-    <div v-if="error">Error {{ error }}</div>
+    <McvLoading v-if="isLoading"></McvLoading>
+    <McvErrors v-if="McvErrors" :message="error"></McvErrors>
     <div v-if="feed">
       <div
         v-for="(article, index) in feed.articles"
@@ -55,6 +55,8 @@ import {mapState} from 'vuex'
 import {actionsTypes} from '../store/modules/feed'
 import McvPagination from './Pagination.vue'
 import {stringify, parseUrl} from 'query-string'
+import McvLoading from '../components/Loading.vue'
+import McvErrors from '../components/Errors.vue'
 // import limit from '../helpers/vars'
 // тут должен был быть лимит, но он выебывается поэтому он компоненте пагинации
 export default {
@@ -114,6 +116,8 @@ export default {
   },
   components: {
     McvPagination,
+    McvLoading,
+    McvErrors,
   },
 }
 </script>

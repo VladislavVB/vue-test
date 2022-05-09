@@ -1,6 +1,6 @@
 <template>
   <div class="hpme-page">
-    BANNER
+    <MvcBanner></MvcBanner>
     <div class="container page">
       <div class="row">
         <div class="col-md-9">
@@ -17,11 +17,13 @@
 <script>
 import McvFeed from '../components/Feed.vue'
 import McvPopularTags from '../components/PopularTags.vue'
+import MvcBanner from '../components/Banner.vue'
 export default {
   name: 'McvClobalFeed',
   components: {
     McvFeed,
     McvPopularTags,
+    MvcBanner,
   },
   data() {
     return {
