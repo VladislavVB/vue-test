@@ -1,14 +1,11 @@
 import {createRouter, createWebHashHistory} from 'vue-router'
-import ClobalFeed from '../views/ClobalFeed.vue'
+import GlobalFeed from '../views/GlobalFeed.vue'
+import YourFeed from '../views/YourFeed'
+import TagFeed from '../views/TagFeed'
 import Register from '../views/Register.vue'
 import Login from '../views/Login.vue'
 
 const routes = [
-  {
-    path: '/',
-    name: 'globalFeed',
-    component: ClobalFeed,
-  },
   {
     path: '/register',
     name: 'register',
@@ -20,44 +17,49 @@ const routes = [
     component: Login,
   },
   {
+    path: '/',
+    name: 'globalFeed',
+    component: GlobalFeed,
+  },
+  {
     path: '/feed',
     name: 'yourFeed',
-    component: ClobalFeed,
+    component: YourFeed,
   },
   {
     path: '/tags/:slug',
     name: 'tag',
-    component: ClobalFeed,
+    component: TagFeed,
   },
   {
     path: '/articles/new',
     name: 'createArticle',
-    component: ClobalFeed,
+    component: GlobalFeed,
   },
   {
     path: '/articles/:slug',
     name: 'article',
-    component: ClobalFeed,
+    component: GlobalFeed,
   },
   {
     path: '/articles/:slug/edit',
     name: 'editArticle',
-    component: ClobalFeed,
+    component: GlobalFeed,
   },
   {
     path: '/settings',
     name: 'settings',
-    component: ClobalFeed,
+    component: GlobalFeed,
   },
   {
     path: '/profiles/:slug',
     name: 'userProfile',
-    component: ClobalFeed,
+    component: GlobalFeed,
   },
   {
     path: '/profiles/:slug/favorites',
     name: 'userProfileFavorites',
-    component: ClobalFeed,
+    component: GlobalFeed,
   },
 ]
 
