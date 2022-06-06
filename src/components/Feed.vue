@@ -105,7 +105,6 @@ export default {
         ...parsedUrl.query,
       })
       const apiUrlWidthParams = `${parsedUrl.url}?${stringifieldParams}`
-      console.log(apiUrlWidthParams)
       this.$store.dispatch(actionsTypes.getFeed, {
         apiUrl: apiUrlWidthParams,
       })
