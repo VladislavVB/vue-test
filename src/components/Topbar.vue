@@ -18,7 +18,7 @@
             <router-link
               active-class="active"
               class="nav-link"
-              :to="{name: 'globalFeed'}"
+              :to="{name: 'createArticle'}"
             >
               <i class="ion-compose"></i> &nbsp; New Article
             </router-link>
