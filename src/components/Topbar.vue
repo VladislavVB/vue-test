@@ -39,6 +39,7 @@
               :to="{name: 'globalFeed'}"
             >
               <img
+                v-if="currentUser.image"
                 class="user-pic"
                 :src="currentUser.image"
                 alt="currentUser.image"
