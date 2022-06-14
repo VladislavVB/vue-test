@@ -38,7 +38,10 @@
           <h1>{{ article.title }}</h1>
           <p>{{ article.description }}</p>
           <span>Read more</span>
-          TAG LIST
+         <McvTagList
+            v-if="article.tagList.length > 0"
+            :tags="article.tagList"
+          ></McvTagList>
         </router-link>
       </div>
       <McvPagination
@@ -57,6 +60,8 @@ import McvPagination from './Pagination.vue'
 import {stringify, parseUrl} from 'query-string'
 import McvLoading from '../components/Loading.vue'
 import McvErrors from '../components/Errors.vue'
+import McvTagList from '../components/TagList.vue'
+
 // import limit from '../helpers/vars'
 // тут должен был быть лимит, но он выебывается поэтому он компоненте пагинации
 export default {
@@ -117,6 +122,7 @@ export default {
     McvPagination,
     McvLoading,
     McvErrors,
+    McvTagList
   },
 }
 </script>
