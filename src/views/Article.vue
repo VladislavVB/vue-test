@@ -10,10 +10,7 @@
               params: {slug: article.author.username},
             }"
           >
-            <img
-              :src="article.author.image"
-              :alt="article.author.username"
-            />
+            <img :src="article.author.image" :alt="article.author.username" />
           </router-link>
           <div class="info">
             <router-link
@@ -35,10 +32,7 @@
               }"
               ><i class="ion-edit"></i> Edit Article</router-link
             >
-            <button
-              @click="deleteArticle()"
-              class="btn btn-outline-danger btn-sm"
-            >
+            <button @click="deleteArticle()" class="btn btn-outline-danger btn-sm">
               <i class="ion-trash-a"></i>Delite Article
             </button>
           </span>
@@ -55,10 +49,7 @@
               <p>{{ article.body }}</p>
             </div>
           </div>
-          <McvTagList
-            v-if="article.tagList.length > 0"
-            :tags="article.tagList"
-          ></McvTagList>
+          <McvTagList v-if="article.tagList.length > 0" :tags="article.tagList"></McvTagList>
         </div>
       </div>
     </div>
@@ -92,9 +83,7 @@ export default {
       if (!this.currentUser || !this.article) {
         return false
       }
-      return (
-        this.currentUser.username === this.article.author.username
-      )
+      return this.currentUser.username === this.article.author.username
     },
   },
   methods: {
