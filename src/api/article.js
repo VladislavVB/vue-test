@@ -7,7 +7,9 @@ const getArticle = (slug) => {
 }
 
 const deliteArticle = (slug) => {
-  return axios.delete(`/articles/${slug}`)
+  return axios
+    .delete(`/articles/${slug}`)
+    .then((res) => res.data.article)
 }
 export default {
   getArticle,

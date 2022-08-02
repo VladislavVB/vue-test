@@ -38,10 +38,7 @@ export default {
   },
   computed: {
     pages() {
-      console.log('url', this.url);
-      console.log(this.total, this.limit);
       const pagesCount = Math.ceil(this.total / this.limit)
-      console.log(pagesCount);
       return range(1, pagesCount)
     },
   },

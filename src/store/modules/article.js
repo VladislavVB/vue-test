@@ -11,14 +11,15 @@ export const mutationsTypes = {
   getArticleSuccess: '[article] Get article success',
   getArticleFailure: '[article] Get article failure',
 
-  deliteArticleStart: '[article] Delite article start',
-  deliteArticleSuccess: '[article] Delite article success',
-  deliteArticleFailure: '[article] Delite article failure',
+  deleteArticleStart: '[article] Delete article start',
+  deleteArticleSuccess: '[article] Delete article success',
+  deleteArticleFailure: '[article] Delete article failure',
 }
 
 export const actionsTypes = {
   getArticle: '[article] Get article',
-  deliteArticle: '[article] Delite article',
+
+  deleteArticle: '[article] Delete article',
 }
 
 const mutations = {
@@ -34,12 +35,12 @@ const mutations = {
     state.isLoading = false
   },
 
-  [mutationsTypes.deliteArticleStart]() {},
-  [mutationsTypes.deliteArticleSuccess]() {},
-  [mutationsTypes.deliteArticleFailure]() {},
+  [mutationsTypes.deleteArticleStart]() { },
+  [mutationsTypes.deleteArticleSuccess]() { },
+  [mutationsTypes.deleteArticleFailure]() { },
 }
 const actions = {
-  [actionsTypes.getArticle](context, {slug}) {
+  [actionsTypes.getArticle](context, { slug }) {
     return new Promise((resolve) => {
       context.commit(mutationsTypes.getArticleStart, slug)
       articleApi
@@ -53,18 +54,17 @@ const actions = {
         })
     })
   },
-
-  [actionsTypes.deliteArticle](context, {slug}) {
+  [actionsTypes.deleteArticle](context, { slug }) {
     return new Promise((resolve) => {
-      context.commit(mutationsTypes.deliteArticleStart, slug)
+      context.commit(mutationsTypes.deleteArticleStart, slug)
       articleApi
         .deliteArticle(slug)
         .then(() => {
-          context.commit(mutationsTypes.deliteArticleSuccess)
+          context.commit(mutationsTypes.deleteArticleSuccess)
           resolve()
         })
         .catch(() => {
-          context.commit(mutationsTypes.deliteArticleFailure)
+          context.commit(mutationsTypes.deleteArticleFailure)
         })
     })
   },

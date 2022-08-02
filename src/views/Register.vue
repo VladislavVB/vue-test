@@ -2,10 +2,14 @@
   <div class="auth_page">
     <div class="container page">
       <div class="row">
-        <div class="col-md-6 offset-md-3 col-xs-12">
+        <div
+          class="col-md-6 offset-md-3 col-xs-12"
+        >
           <h1 class="text-xs-center">Sign In</h1>
           <p class="text-xs-center">
-            <router-link :to="{name: 'login'}">You have account?</router-link>
+            <router-link :to="{name: 'login'}"
+              >You have account?</router-link
+            >
           </p>
           <McvValidationErrors
             v-if="validationErrors"
@@ -68,7 +72,8 @@ export default {
       return this.$store.state.auth.isSubmiting
     },
     validationErrors() {
-      return this.$store.state.auth.validationErrors
+      return this.$store.state.auth
+        .validationErrors
     },
   },
   methods: {

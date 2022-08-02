@@ -10,10 +10,7 @@
               params: {slug: article.author.username},
             }"
           >
-            <img
-              :src="article.author.image"
-              :alt="article.author.username"
-            />
+            <img :src="article.author.image" :alt="article.author.username" />
           </router-link>
           <div class="info">
             <router-link
@@ -35,10 +32,7 @@
               }"
               ><i class="ion-edit"></i> Edit Article</router-link
             >
-            <button
-              @click="deliteArticle()"
-              class="btn btn-outline-danger btn-sm"
-            >
+            <button @click="deleteArticle()" class="btn btn-outline-danger btn-sm">
               <i class="ion-trash-a"></i>Delite Article
             </button>
           </span>
@@ -54,8 +48,8 @@
             <div>
               <p>{{ article.body }}</p>
             </div>
-            TAGLIST
           </div>
+          <McvTagList v-if="article.tagList.length > 0" :tags="article.tagList"></McvTagList>
         </div>
       </div>
     </div>
@@ -64,14 +58,16 @@
 <script>
 import McvLoading from '../components/Loading.vue'
 import McvErrors from '../components/Errors.vue'
+import McvTagList from '../components/TagList.vue'
 
 import {mapState} from 'vuex'
 import {actionsTypes} from '../store/modules/article'
 export default {
   name: 'McvArticle',
-  component: {
+  components: {
     McvLoading,
     McvErrors,
+    McvTagList,
   },
   computed: {
     ...mapState({
@@ -86,24 +82,24 @@ export default {
       if (!this.currentUser || !this.article) {
         return false
       }
-      return (
-        this.currentUser.username === this.article.author.username
-      )
+      return this.currentUser.username === this.article.author.username
     },
   },
   methods: {
-    deliteArticle() {
-      this.$store.dispatch(actionsTypes.deliteArticle, {
-        slug: this.$route.params.slug
-      })
-      .then(() => {
-        this.$router.push({name: 'globalFeed'})
-      })
+    deleteArticle() {
+      this.$store
+        .dispatch(actionsTypes.deleteArticle, {
+          slug: this.$route.params.slug,
+        })
+        .then(() => {
+          console.log('dssdsd')
+          this.$router.push({name: 'globalFeed'})
+        })
     },
   },
   mounted() {
     this.$store.dispatch(actionsTypes.getArticle, {
-      slug: this.$route.params.slug
+      slug: this.$route.params.slug,
     })
   },
 }
