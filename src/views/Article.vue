@@ -26,7 +26,7 @@
             </router-link>
             <span class="date">{{ article.createdAt }}</span>
           </div>
-          <span
+          <span v-if="isAuthor"
             ><router-link
               class="btn btn-outline-secondary btn-sm"
               :to="{
@@ -35,7 +35,10 @@
               }"
               ><i class="ion-edit"></i> Edit Article</router-link
             >
-            <button class="btn btn-outline-danger btn-sm">
+            <button
+              @click="deliteArticle()"
+              class="btn btn-outline-danger btn-sm"
+            >
               <i class="ion-trash-a"></i>Delite Article
             </button>
           </span>
@@ -49,7 +52,7 @@
         <div class="row article-content" v-if="article">
           <div class="col-xs-12">
             <div>
-              <p>{{article.body}}</p>
+              <p>{{ article.body }}</p>
             </div>
             TAGLIST
           </div>
@@ -66,10 +69,9 @@ import {mapState} from 'vuex'
 import {actionsTypes} from '../store/modules/article'
 export default {
   name: 'McvArticle',
-  mounted() {
-    this.$store.dispatch(actionsTypes.getArticle, {
-      slug: this.$route.params.slug,
-    })
+  component: {
+    McvLoading,
+    McvErrors,
   },
   computed: {
     ...mapState({
@@ -77,10 +79,32 @@ export default {
       error: (state) => state.article.error,
       article: (state) => state.article.data,
     }),
+    currentUser() {
+      return this.$store.getters.currentUser
+    },
+    isAuthor() {
+      if (!this.currentUser || !this.article) {
+        return false
+      }
+      return (
+        this.currentUser.username === this.article.author.username
+      )
+    },
   },
-  component: {
-    McvLoading,
-    McvErrors,
+  methods: {
+    deliteArticle() {
+      this.$store.dispatch(actionsTypes.deliteArticle, {
+        slug: this.$route.params.slug
+      })
+      .then(() => {
+        this.$router.push({name: 'globalFeed'})
+      })
+    },
+  },
+  mounted() {
+    this.$store.dispatch(actionsTypes.getArticle, {
+      slug: this.$route.params.slug
+    })
   },
 }
 </script>

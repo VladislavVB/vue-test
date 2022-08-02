@@ -5,6 +5,11 @@ const getArticle = (slug) => {
     .get(`/articles/${slug}`)
     .then((res) => res.data.article)
 }
+
+const deliteArticle = (slug) => {
+  return axios.delete(`/articles/${slug}`)
+}
 export default {
   getArticle,
+  deliteArticle
 }
