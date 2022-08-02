@@ -28,10 +28,7 @@
                 placeholder="Password"
               />
             </fieldset>
-            <button
-              :disabled="isSubmiting"
-              class="btn btn-lg btn-primary pull-xs-right"
-            >
+            <button :disabled="isSubmiting" class="btn btn-lg btn-primary pull-xs-right">
               Sign In
             </button>
           </form>

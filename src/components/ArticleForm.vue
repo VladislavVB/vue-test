@@ -7,47 +7,23 @@
           <form @submit.prevent="onSubmit">
             <fieldset>
               <fieldset class="form-group">
-                <input
-                  type="text"
-                  class="form-controll form-controll-lg"
-                  placeholder="Article Title"
-                  v-model="title"
-                />
+                <input type="text" class="form-controll form-controll-lg" placeholder="Article Title" v-model="title" />
               </fieldset>
 
               <fieldset class="form-group">
-                <input
-                  type="text"
-                  class="form-controll form-controll-lg"
-                  placeholder="Description"
-                  v-model="description"
-                />
+                <input type="text" class="form-controll form-controll-lg" placeholder="Description" v-model="description" />
               </fieldset>
 
               <fieldset class="form-group">
-                <textarea
-                  type="text"
-                  class="form-controll form-controll-lg"
-                  placeholder="Body"
-                  v-model="body"
-                />
+                <textarea type="text" class="form-controll form-controll-lg" placeholder="Body" v-model="body" />
               </fieldset>
 
               <fieldset class="form-group">
-                <input
-                  type="text"
-                  class="form-controll form-controll-lg"
-                  placeholder="Enter tags"
-                  v-model="tagList"
-                />
+                <input type="text" class="form-controll form-controll-lg" placeholder="Enter tags" v-model="tagList" />
               </fieldset>
 
               <fieldset class="form-group">
-                <button
-                  type="submit"
-                  :disabled="isSubmiting"
-                  class="btn btn-lg pull=xs=right btn-primary"
-                >Publish</button>
+                <button type="submit" :disabled="isSubmiting" class="btn btn-lg pull=xs=right btn-primary">Publish</button>
               </fieldset>
             </fieldset>
           </form>
@@ -68,7 +44,6 @@ export default {
       description: '',
       body: '',
       tagList: '',
-
     }
   },
   components: {
